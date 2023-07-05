@@ -1,11 +1,8 @@
 
-//  main.c code works with the MATLAB myscope.m and 
-//  myscope.fig files under the following conditions:
 //  MSP430 is configured for 16MHz clock.
 //  UART is set for 115200 baud, using the x16 clock mode.
 //  NPOINTS = 400
 //  ADC input is on P1.4
-//  myscope.m must be changed to connect to the proper COMx port.
 //-----------------------------------------------------------------
 
 #include "io430.h"
@@ -197,31 +194,8 @@ while(i<40000)
 }
 
 //--------------------------------------------------------
-//  Variable Input from MATLAB
-//--------------------------------------------------------
-//void mexFunction(int nlhs, mxArray *plhs[],
-//                 int nrhs, const mxArray *prhs[])
-//{
-//  if(nrhs != 4) {
-//    mexErrMsgIdAndTxt("MyToolbox:arrayProduct:nrhs",
-//                      "Four inputs required.");
-//  }
-//  /* DECLARATIONS*/
-//  double Kp, Ki, Kd, power;
-//  
-//  /* INPUTS */
-//  Kp       = mxGetPr(prhs[0]);
-//  Ki       = mxGetPr(prhs[1]);
-//  Kd       = mxGetPr(prhs[2]);
-//  power    = mxGetPr(prhs[3]);
-//  
-//  Init_PID(Kp, Ki, Kd, power);
-//}
-// 
-//--------------------------------------------------------
 //  Initialization
 //--------------------------------------------------------
-
 
 void Init(void)
 {
@@ -260,9 +234,7 @@ void main()
   while(1)
   {
     getc();
-    GREEN_LED = ON;
     Send(NPOINTS);
-    GREEN_LED = OFF;
     Sample(NPOINTS);
   }
   
